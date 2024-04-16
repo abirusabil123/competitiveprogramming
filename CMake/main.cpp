@@ -40,7 +40,7 @@ printf("%.2lf", double_value);  // 4.00
 #include <set>
 #include <stack>
 #include <string>
-// thread my_thread(runner, 10, " ready"); my_thread.join();
+// thread my_thread(function, params); my_thread.join();
 #include <thread>
 #include <tuple>
 #include <unordered_map>
