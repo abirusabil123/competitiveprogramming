@@ -74,6 +74,8 @@ void setup(int argc, char* argv[]) {
 
 // For map like
 // map<int, int, compare> myMap;
+// For priority_queue like
+// priority_queue<pair<int, int>, vector<pair<int, int>>, compare> pq;
 // struct compare {
 //     bool operator()(int a, int b) const {
 //         return a < b;  // true means a definitely before b
