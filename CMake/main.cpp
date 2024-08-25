@@ -78,7 +78,7 @@ void setup(int argc, char* argv[]) {
 // priority_queue<int, vector<int>, compare> pq;
 // struct compare {
 //     bool operator()(int a, int b) const {
-//         return a < b;  // true means a definitely before b
+//         return a < b;  // true means a definitely before b // will lead to max heap
 //     }
 // };
 
