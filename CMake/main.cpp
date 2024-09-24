@@ -7,47 +7,94 @@ printf("%.2lf", double_value);  // 4.00
 ///////////////////////////////////////////////////////////////
 // #include <bits/stdc++.h>
 #include <assert.h>
-#include <cxxabi.h>     // Demangling type name so that it is human-readable
-#include <float.h>      // DBL_MAX
-#include <math.h>       // ceil/floor
-#include <semaphore.h>  // sem_t m; sem_init(&m, 0, 1); sem_destroy(&m); sem_wait(&m); sem_post(&m);
-#include <time.h>       // clock_t clock(); CLOCKS_PER_SEC
-#include <unistd.h>     // sleep(10) in seconds and usleep(10)
+// Demangling type name so that it is human-readable
+#include <cxxabi.h>
+// DBL_MAX
+#include <float.h>
+// ceil/floor
+#include <math.h>
+// sem_t m;
+// sem_init(&m, 0, 1);
+// sem_destroy(&m);
+// sem_wait(&m);
+// sem_post(&m);
+#include <semaphore.h>
+// clock_t clock();
+// CLOCKS_PER_SEC
+#include <time.h>
+// sleep(10) in seconds and usleep(10)
+#include <unistd.h>
 
-#include <algorithm>  // max/min lower_bound/upper_bound binary_search reverse next_permutation
-#include <bitset>     // (c & a).any() and access like array
-#include <chrono>     // system time
-#include <climits>    // INT_MIN LLONG_MAX
+// max/min
+// lower_bound/upper_bound
+// binary_search
+// reverse
+// next_permutation
+#include <algorithm>
+// (c & a).any() and access like array
+#include <bitset>
+// System time
+#include <chrono>
+// INT_MIN LLONG_MAX
+#include <climits>
 #include <condition_variable>
 // rand() and srand()
 #include <cstdlib>
-// provides functions for dealing with C-style strings. It creates null-terminated arrays of characters.
+// Provides functions for dealing with C-style strings.
+// It creates null-terminated arrays of characters.
 #include <cstring>
 #include <deque>
-// fstream fio("sample.txt",ios::trunc|ios::out|ios::in); fio<<line; getline(fio,line); fio.close();
+// ofstream myfile;
+// myfile.open("example.txt");
+// myfile << "Text.\n";
+// myfile.close();
+// ifstream myfile("example.txt");
+// while (getline(myfile,line)) {
+//     cout << line << '\n';
+// }
+// myfile.close();
 #include <fstream>
 #include <functional>
-#include <iomanip>  // cout<<setprecision(5); contain functions to manipulate i/o format.
+// cout<<setprecision(5);
+// Contain functions to manipulate i/o format.
+#include <iomanip>
 #include <iostream>
-#include <list>     // doubly linked list and variable.sort(vector like compare);
-#include <map>      // sorts by key
-#include <memory>   // unique_ptr/shared_ptr/weak_ptr
-#include <mutex>    // mutex n; n.lock(); n.unlock();
-#include <numeric>  // gcd there will be sqiggly red line but no compilation error
-// priority_queue <int, vector<int>, greater<int>> minHeap; (priority_queue is by default max heap)
+// Doubly linked list and variable.sort(vector like compare);
+#include <list>
+// sorts by key
+#include <map>
+// unique_ptr/shared_ptr/weak_ptr
+#include <memory>
+// mutex n;
+// n.lock();
+// n.unlock();
+#include <mutex>
+// gcd there will be sqiggly red line but no compilation error
+#include <numeric>
+// priority_queue <int, vector<int>, greater<int>> minHeap;
+// priority_queue is by default max heap
 #include <queue>
 // sorts by value
 #include <set>
+// string str = "How are you"
+// stringstream s(str);
+// string word;
+// while(s >> word) {
+//     cout<<word<<endl;
+// }
+#include <sstream>
 #include <stack>
 #include <string>
-// thread my_thread(function, params); my_thread.join();
+// thread my_thread(function, params);
+// my_thread.join();
 #include <thread>
 #include <tuple>
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
 
-// cout << "Line 1..." << flush; or default endl for interactive programs
+// cout << "Line 1..." << flush;
+// or default endl for interactive programs.
 #define endl "\n"
 using namespace std;
 
