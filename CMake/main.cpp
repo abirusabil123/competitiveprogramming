@@ -32,7 +32,8 @@ printf("%.2lf", double_value);  // 4.00
 // next_permutation
 #include <algorithm>
 // std::atomic<int> counter(99);
-// counter.fetch_add(1);
+// counter.fetch_add(2);
+// counter.fetch_sub(1);
 // int value = counter.load();
 #include <atomic>
 // (c & a).any() and access like array
@@ -176,6 +177,13 @@ int main(int argc, char* argv[]) {
     // cin >> T;
     // for (int test_case = 1; test_case <= T; test_case++) {
     // }
+
+    std::atomic<int> counter(99);
+    counter.fetch_add(2);
+    counter.fetch_sub(1);
+    int value = counter.load();
+
+    cout << value << endl;
 
     return 0;
 }
