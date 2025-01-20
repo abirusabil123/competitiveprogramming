@@ -24,6 +24,7 @@
         "string": "cpp",
         "string_view": "cpp",
         "thread": "cpp",
-        "atomic": "cpp"
+        "atomic": "cpp",
+        "xstring": "cpp"
     }
 }
