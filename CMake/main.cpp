@@ -178,7 +178,9 @@ int main(int argc, char* argv[]) {
     // for (int test_case = 1; test_case <= T; test_case++) {
     // }
 
-    cout << "OK" << endl;
+    int i = 0;
+    i++;
+    cout << "OK " << i << endl;
 
     return 0;
 }
