@@ -1,4 +1,4 @@
-python main.py
+python python/main.py
 
 python -m venv .venv 
 .venv/Scripts/Activate
