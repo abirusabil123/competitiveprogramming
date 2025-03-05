@@ -2,7 +2,7 @@
 python -m venv myenv
 myenv/Scripts/Activate
 
-python python/main.py
+python main.py
 
 deactivate
 
