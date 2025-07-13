@@ -184,20 +184,5 @@ int main(int argc, char* argv[]) {
     i++;
     cout << "OK " << i << endl;
 
-    std::unordered_map<vector<int>, int, customHash> myUMap;
-    myUMap[{1, 2, 3}] = 10;
-    myUMap[{4, 5, 6}] = 20;
-    myUMap[{1, 2, 3}] += 5; // Update
-    myUMap[{7, 8, 9}] = 30;
-
-
-    for (const auto& pair : myUMap) {
-        cout << "Key: ";
-        for (int num : pair.first) {
-            cout << num << " ";
-        }
-        cout << "Value: " << pair.second << endl;
-    }
-
     return 0;
 }
