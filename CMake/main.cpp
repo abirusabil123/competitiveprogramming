@@ -141,12 +141,14 @@ void setup(int argc, char* argv[]) {
 // };
 
 // For unordered_map like
-// std::unordered_map<tuple<int, int>, int, customHASH> myUMap;
-// struct customHASH {
-//     size_t operator()(tuple<int, int> a) const {
-//         // collisions are handled internally.
-//         // max value of second element is 99.
-//         return abs(abs(get<0>(a)) - abs(get<1>(a)));
+// std::unordered_map<vector<int>, int, customHash> myUMap;
+// struct customHash {
+//     size_t operator() (vector<int> a) const {
+//         size_t sum = 0;
+//         for(int i=0;i<a.size();i++) {
+//             sum = (sum+a[i]%1000000)%1000000;
+//         }
+//         return sum;
 //     }
 // };
 
@@ -181,6 +183,21 @@ int main(int argc, char* argv[]) {
     int i = 0;
     i++;
     cout << "OK " << i << endl;
+
+    std::unordered_map<vector<int>, int, customHash> myUMap;
+    myUMap[{1, 2, 3}] = 10;
+    myUMap[{4, 5, 6}] = 20;
+    myUMap[{1, 2, 3}] += 5; // Update
+    myUMap[{7, 8, 9}] = 30;
+
+
+    for (const auto& pair : myUMap) {
+        cout << "Key: ";
+        for (int num : pair.first) {
+            cout << num << " ";
+        }
+        cout << "Value: " << pair.second << endl;
+    }
 
     return 0;
 }
