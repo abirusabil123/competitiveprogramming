@@ -107,24 +107,24 @@ printf("%.2lf", double_value);  // 4.00
 // #define endl "\n"
 using namespace std;
 
-void setup(int argc, char* argv[]) {
+void setup(int argc, char *argv[]) {
 #ifdef I_AM_DEBUGGING
-    freopen("../input.txt", "r", stdin);
-    string inputFlag = argc > 1 ? argv[1] : "";
-    if (inputFlag == "OUTPUT_TO_FILE") {
-        freopen("../output.txt", "w", stdout);
-    } else {
-        cout << "c++ version is " << __cplusplus << endl;
+  freopen("../input.txt", "r", stdin);
+  string inputFlag = argc > 1 ? argv[1] : "";
+  if (inputFlag == "OUTPUT_TO_FILE") {
+    freopen("../output.txt", "w", stdout);
+  } else {
 #ifdef __clang__
-        cout << "clang++ " << __clang_major__ << "." << __clang_minor__ << ".";
-        cout << __clang_patchlevel__ << endl;
+    cout << "clang++ " << __clang_major__ << "." << __clang_minor__ << ".";
+    cout << __clang_patchlevel__ << endl;
 #elif _MSC_VER
-        cout << "MSVC " << _MSC_VER << endl;
+    cout << "MSVC " << _MSC_VER << endl;
 #else
-        cout << "g++ " << __GNUC__ << "." << __GNUC_MINOR__ << ".";
-        cout << __GNUC_PATCHLEVEL__ << endl;
+    cout << "g++ " << __GNUC__ << "." << __GNUC_MINOR__ << ".";
+    cout << __GNUC_PATCHLEVEL__ << endl;
 #endif
-    }
+    cout << "c++ version is " << __cplusplus << endl;
+  }
 #endif
 }
 
@@ -168,21 +168,21 @@ NOTES:
 */
 ///////////////////////////////////////////////////////////////
 
-int main(int argc, char* argv[]) {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
-    setup(argc, argv);
-    ////////////////////////////////////////
+int main(int argc, char *argv[]) {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  cout.tie(0);
+  setup(argc, argv);
+  ////////////////////////////////////////
 
-    // int T;
-    // cin >> T;
-    // for (int test_case = 1; test_case <= T; test_case++) {
-    // }
+  // int T;
+  // cin >> T;
+  // for (int test_case = 1; test_case <= T; test_case++) {
+  // }
 
-    int i = 0;
-    i++;
-    cout << "OK " << i << endl;
+  int i = 0;
+  i++;
+  cout << "OK " << i << endl;
 
-    return 0;
+  return 0;
 }
