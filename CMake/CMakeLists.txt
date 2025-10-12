@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(cp VERSION 1.0.0)
+project(cp VERSION 2.0.0)
 
 include(CTest)
 enable_testing()
@@ -20,7 +20,8 @@ add_test(
   )
 set_property(TEST Test1 APPEND PROPERTY DEPENDS Test0)
 
-target_compile_features(cp PRIVATE cxx_std_17)
+target_compile_features(cp PRIVATE cxx_std_23)
+target_compile_features(cpCtest PRIVATE cxx_std_23)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
