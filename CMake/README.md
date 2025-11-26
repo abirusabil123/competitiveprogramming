@@ -14,8 +14,8 @@ brew install cmake<br/>
 On VSCodium open this CMake folder directly or else the folder structure will be incorrect.<br/>
 
 **Linux and Windows:**<br/>
-CMake: Run Without Debugging (Shift+F5) for build and run.<br/>
-CMake: Debug (Ctrl+F5) for debug.<br/>
+CMake: Run Without Debugging (Ctrl+F5) for build and run.<br/>
+CMake: Debug (Shift+F5) for debug.<br/>
 To format a selection: Ctrl+A, Ctrl+K, Ctrl+F<br/>
 
 **Mac:**<br/>
