@@ -180,9 +180,7 @@ int main(int argc, char *argv[]) {
   // for (int test_case = 1; test_case <= T; test_case++) {
   // }
 
-  int i = 0;
-  i++;
-  cout << "OK " << i << endl;
+  cout << "OK " << endl;
 
   return 0;
 }
