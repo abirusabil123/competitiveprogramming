@@ -20,8 +20,8 @@ add_test(
   )
 set_property(TEST Test1 APPEND PROPERTY DEPENDS Test0)
 
-target_compile_features(cp PRIVATE cxx_std_23)
-target_compile_features(cpCtest PRIVATE cxx_std_23)
+target_compile_features(cp PRIVATE cxx_std_14)
+target_compile_features(cpCtest PRIVATE cxx_std_14)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

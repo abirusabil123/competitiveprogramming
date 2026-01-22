@@ -1,7 +1,10 @@
 # competitiveprogramming
-C++17 Competitive Programming setup using CMake.
+C++14 Competitive Programming setup using CMake.
 
 Tested on Windows 10 and Intel Mac. Use VS Codium.
+
+I prefer C++11/C++14 to limit features as C++ is already overwhelming.
+I prefer C++14 the most as C++14 is C+11 with refinements.
 
 Install<br/>
 https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack<br/>
