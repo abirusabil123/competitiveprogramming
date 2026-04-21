@@ -108,24 +108,24 @@ printf("%.2lf", double_value);  // 4.00
 using namespace std;
 
 void setup(int argc, char *argv[]) {
-#ifdef I_AM_DEBUGGING
+  #ifdef I_AM_DEBUGGING
   freopen("../input.txt", "r", stdin);
   string inputFlag = argc > 1 ? argv[1] : "";
   if (inputFlag == "OUTPUT_TO_FILE") {
     freopen("../output.txt", "w", stdout);
   } else {
-#ifdef __clang__
+    #ifdef __clang__
     cout << "clang++ " << __clang_major__ << "." << __clang_minor__ << ".";
     cout << __clang_patchlevel__ << endl;
-#elif _MSC_VER
+    #elif _MSC_VER
     cout << "MSVC " << _MSC_VER << endl;
-#else
+    #else
     cout << "g++ " << __GNUC__ << "." << __GNUC_MINOR__ << ".";
     cout << __GNUC_PATCHLEVEL__ << endl;
-#endif
+    #endif
     cout << "c++ version is " << __cplusplus << endl;
   }
-#endif
+  #endif
 }
 
 // For map like
@@ -168,19 +168,162 @@ NOTES:
 */
 ///////////////////////////////////////////////////////////////
 
+string convertToStandard (string rawDate) {
+  string year, month, date;
+  
+  string monthText = rawDate.substr(0,3);
+  if (monthText == "Jan") {
+    month = "01";
+  } else if (monthText == "Feb") {
+    month = "02";
+  } else if (monthText == "Mar") {
+    month = "03";
+  } else if (monthText == "Apr") {
+    month = "04";
+  } else if (monthText == "May") {
+    month = "05";
+  } else if (monthText == "Jun") {
+    month = "06";
+  } else if (monthText == "Jul") {
+    month = "07";
+  } else if (monthText == "Aug") {
+    month = "08";
+  } else if (monthText == "Sep") {
+    month = "09";
+  } else if (monthText == "Oct") {
+    month = "10";
+  } else if (monthText == "Nov") {
+    month = "11";
+  } else if (monthText == "Dec") {
+    month = "12";
+  }
+  
+  int yearStart;
+  for(int i=4;i<rawDate.size();i++) {
+    if(rawDate[i]==' ') {
+      yearStart = i+1;
+      break;
+    }
+    date.push_back(rawDate[i]);
+  }
+  if(date.size() == 1) {
+    date = "0" + date;
+  }
+  year = rawDate.substr(yearStart,4);
+  
+  return year+'-'+month+'-'+date;
+}
+
+void getData() {
+  ifstream inputFile("../input.html");
+  ofstream outputFile("../output.csv");
+  
+  string line;
+  int at = 0;
+  vector<string> data(6);
+  while(getline(inputFile, line)) {
+    // outputFile << line << endl;
+    bool started = false, startData = false;
+    
+    for (int i=0;i<line.size();i++) {
+      if(!started && line[i]=='<') {
+        started = true;
+        i++;
+        continue;
+      } else if (!startData && line[i] == 'd') {
+        startData = true;
+        i+=19;
+        continue;
+      } else if (startData) {
+        int startInt = i;
+        while(line[i]!='<') {
+          i++;
+        }
+        string tempStringRaw = line.substr(startInt, i-startInt);
+        // outputFile << data;
+        
+        string tempString;
+        for(int j=0;j<tempStringRaw.size();j++) {
+          if(tempStringRaw[j]!=',') {
+            tempString.push_back(tempStringRaw[j]);
+          }
+        }
+        
+        switch (at%9) {
+          case 1:
+          data[0] = convertToStandard(tempString);
+          break;
+          case 2:
+          data[4] = tempString;
+          break;
+          case 3:
+          data[2] = tempString;
+          break;
+          case 4:
+          data[3] = tempString;
+          break;
+          case 5:
+          data[1] = tempString;
+          break;
+          case 7:
+          data[5] = tempString;
+          case 8:
+          for(int i=0;i<data.size();i++) {
+            outputFile << data[i];
+            if(i!=data.size()-1) {
+              outputFile<<',';
+            }
+          }
+          outputFile<<endl;
+          break;
+        }
+        break;
+      }
+    }
+    at++;
+  }
+  
+  inputFile.close();
+  outputFile.close();
+}
+
+void reverseData() {
+  ifstream inputFile("../output.csv");
+  ofstream outputFile("../outputProper.csv");
+  
+  string line;
+  stack<string> myStack;
+  while(getline(inputFile, line)) {
+    myStack.push(line);
+  }
+  
+  while(!myStack.empty()) {
+    string temp = myStack.top();
+    myStack.pop();
+    outputFile<<temp<<endl;
+  }
+  
+  inputFile.close();
+  outputFile.close();
+}
+
 int main(int argc, char *argv[]) {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
   setup(argc, argv);
   ////////////////////////////////////////
-
+  
   // int T;
   // cin >> T;
   // for (int test_case = 1; test_case <= T; test_case++) {
   // }
-
+  
   cout << "OK " << endl;
-
+  
+  getData();
+  
+  reverseData();
+  
   return 0;
 }
