@@ -27,5 +27,6 @@
         "atomic": "cpp",
         "xstring": "cpp"
     },
-    "sarif-viewer.connectToGithubCodeScanning": "off"
+    "sarif-viewer.connectToGithubCodeScanning": "off",
+    "code-jinni.gpuLayers": 99
 }
