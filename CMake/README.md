@@ -28,7 +28,7 @@ To run without debugging.
 Ctrl+F5 
 ```
 
-# Terminal setup
+# Terminal setup (Alternative)
 
 ### Build
 ```bash
