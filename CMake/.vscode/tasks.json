@@ -17,6 +17,16 @@
             "dependsOn": [
                 "CMake Configure"
             ]
+        },
+        {
+            "label": "Run Tests",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/build && ctest --output-on-failure",
+            "group": "test",
+            "problemMatcher": [],
+            "dependsOn": [
+                "CMake Build"
+            ]
         }
     ]
 }

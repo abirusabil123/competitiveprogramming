@@ -27,6 +27,7 @@ To run without debugging.
 ```bash
 Ctrl+F5 
 ```
+Run tests: Ctrl+Shift+P → Tasks: Run Task → Run Tests.
 
 # Terminal setup (Alternative)
 
