@@ -175,10 +175,11 @@ int main(int argc, char *argv[]) {
   setup(argc, argv);
   ////////////////////////////////////////
   
-  // int T;
-  // cin >> T;
-  // for (int test_case = 1; test_case <= T; test_case++) {
-  // }
+  int T;
+  cin >> T;
+  for (int test_case = 1; test_case <= T; test_case++) {
+    cout<<test_case<<endl;
+  }
   
   cout << "OK " << endl;
   
