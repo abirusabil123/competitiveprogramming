@@ -3,7 +3,8 @@
  "windows": { 
  "options": { 
  "env": { 
- "PATH": "C:\\msys64\\ucrt64\\bin;${env:PATH}" 
+ "PATH": "C:\\msys64\\ucrt64\\bin;${env:PATH}", 
+ "CMAKE_GENERATOR": "MinGW Makefiles" 
  } 
  } 
  }, 
