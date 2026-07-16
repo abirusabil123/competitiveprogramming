@@ -1,32 +1,39 @@
-{
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "CMake Configure",
-            "type": "shell",
-            "command": "mkdir -p ${workspaceFolder}/build && cd ${workspaceFolder}/build && cmake ..",
-            "group": "build",
-            "problemMatcher": []
-        },
-        {
-            "label": "CMake Build",
-            "type": "shell",
-            "command": "cmake --build ${workspaceFolder}/build --config Debug",
-            "group": "build",
-            "problemMatcher": [],
-            "dependsOn": [
-                "CMake Configure"
-            ]
-        },
-        {
-            "label": "Run Tests",
-            "type": "shell",
-            "command": "cd ${workspaceFolder}/build && ctest --output-on-failure",
-            "group": "test",
-            "problemMatcher": [],
-            "dependsOn": [
-                "CMake Build"
-            ]
-        }
-    ]
+{ 
+ "version": "2.0.0", 
+ "windows": { 
+ "options": { 
+ "env": { 
+ "PATH": "C:\\msys64\\ucrt64\\bin;${env:PATH}" 
+ } 
+ } 
+ }, 
+ "tasks": [ 
+ { 
+ "label": "CMake Configure", 
+ "type": "shell", 
+ "command": "cmake -S ${workspaceFolder} -B ${workspaceFolder}/build", 
+ "group": "build", 
+ "problemMatcher": [] 
+ }, 
+ { 
+ "label": "CMake Build", 
+ "type": "shell", 
+ "command": "cmake --build ${workspaceFolder}/build --config Debug", 
+ "group": "build", 
+ "problemMatcher": [], 
+ "dependsOn": [ 
+ "CMake Configure" 
+ ] 
+ }, 
+ { 
+ "label": "Run Tests", 
+ "type": "shell", 
+ "command": "cd ${workspaceFolder}/build && ctest --output-on-failure", 
+ "group": "test", 
+ "problemMatcher": [], 
+ "dependsOn": [ 
+ "CMake Build" 
+ ] 
+ } 
+ ] 
 }
