@@ -1,5 +1,5 @@
 /*
-author: a_natural
+author: abirusabil
 //////////////
 Use long long instead of long always.
 printf("%.2lf", double_value);  // 4.00
@@ -175,13 +175,32 @@ int main(int argc, char *argv[]) {
   setup(argc, argv);
   ////////////////////////////////////////
   
-  int T;
-  cin >> T;
-  for (int test_case = 1; test_case <= T; test_case++) {
-    cout<<test_case<<endl;
+  // int T;
+  // cin >> T;
+  // for (int test_case = 1; test_case <= T; test_case++) {
+  //   cout<<test_case<<endl;
+  // }
+
+  int n;
+  cin>>n;
+
+  int groups = 0;
+  int last = -1;
+
+  for (int i=0;i<n;i++) {
+    int magnet;
+    cin>>magnet;
+
+    if(magnet == last) {
+      continue;
+    }
+
+    groups++;
+
+    last = magnet;    
   }
-  
-  cout << "OK " << endl;
+
+  cout<<groups<<endl;
   
   return 0;
 }

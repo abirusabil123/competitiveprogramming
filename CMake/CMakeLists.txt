@@ -7,6 +7,29 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_BUILD_TYPE Debug)
 
+
+# --- START: Strict warnings for local development ---
+if(MSVC)
+  add_compile_options(/W4 /WX /permissive-)
+else()
+  add_compile_options(
+    -Wall
+    -Wextra
+    -Wpedantic
+    -Werror
+    -Wshadow
+    -Wformat=2
+    -Wcast-align
+    -Wconversion
+    -Wsign-conversion
+    -Wnull-dereference
+    -Wdouble-promotion
+  )
+endif()
+#  If you want warnings but don’t want them to stop the build, remove -Werror.
+# --- END: Strict warnings for local development ---
+
+
 include(CTest)
 enable_testing()
 
