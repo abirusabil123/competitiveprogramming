@@ -168,6 +168,22 @@ NOTES:
 */
 ///////////////////////////////////////////////////////////////
 
+
+long long binarySearch(long long low, long long high, long long third) {
+  if (low==high) {
+    return low;
+  }
+  long long mid = low+(high-low)/2;
+
+  long long calculate = (mid*(mid+1))/2;
+
+  if(third>=calculate) {
+    return binarySearch(mid+1,high,third);
+  } else {
+    return binarySearch(low,mid,third);
+  }
+}
+
 int main(int argc, char *argv[]) {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
@@ -175,32 +191,65 @@ int main(int argc, char *argv[]) {
   setup(argc, argv);
   ////////////////////////////////////////
   
-  // int T;
-  // cin >> T;
-  // for (int test_case = 1; test_case <= T; test_case++) {
-  //   cout<<test_case<<endl;
-  // }
+  int T;
+  cin >> T;
+  for (int test_case = 1; test_case <= T; test_case++) {
+    long long n;
+    cin>>n;
 
-  int n;
-  cin>>n;
+    long long index = n-1;
 
-  int groups = 0;
-  int last = -1;
+    long long position = index%3;
+    long long third = index/3;
 
-  for (int i=0;i<n;i++) {
-    int magnet;
-    cin>>magnet;
+    // 1,2,3,4,5,6 -> cumulative sum is 1,3,6,10, ... n(n+1)/2
+    // third upper bound not reached is 1,3,6, 
+    // long long series = 1;
+    // while (third>=(series*(series+1))/2) {
+    //   series++;
+    // }
+    long long series = binarySearch(1,n,third);
 
-    if(magnet == last) {
-      continue;
+    long long seriesStart = ((series-1)*series)/2;
+
+    long long positionInSeries = third - seriesStart;
+
+    long long numberOfBits = (long long)pow(2,series);
+
+    string answer;
+    
+
+    for (int i=0;i<=positionInSeries;i++) {
+      switch (position) {
+        case 0:
+        answer += "01";
+        break;
+        case 1:
+        answer += "10";
+        break;
+        case 2:
+        answer += "11";
+        break;
+      }
     }
 
-    groups++;
+    int currentAnswerSize = (int)answer.size();
 
-    last = magnet;    
+    for (int i=0;i<numberOfBits-currentAnswerSize;i++) {
+      answer+='0';
+    }
+
+    long long realAnswer = 0;
+
+    int power = 0;
+    for(int i=(int)answer.size()-1;i>=0;i--) {
+      realAnswer += (answer[(size_t)i]-'0')*(long long)pow(2,power);
+      power++;
+    }
+
+    cout<<realAnswer<<endl;
   }
 
-  cout<<groups<<endl;
   
   return 0;
 }
