@@ -175,7 +175,7 @@ long long binarySearch(long long low, long long high, long long third) {
   }
   long long mid = low+(high-low)/2;
 
-  long long calculate = (mid*(mid+1))/2;
+  long long calculate = (long long)pow(2,mid);
 
   if(third>=calculate) {
     return binarySearch(mid+1,high,third);
@@ -198,55 +198,32 @@ int main(int argc, char *argv[]) {
     cin>>n;
 
     long long index = n-1;
-
     long long position = index%3;
-    long long third = index/3;
+    long long third = index/3; // starting 0
 
-    // 1,2,3,4,5,6 -> cumulative sum is 1,3,6,10, ... n(n+1)/2
-    // third upper bound not reached is 1,3,6, 
-    // long long series = 1;
-    // while (third>=(series*(series+1))/2) {
+
+    // third series is                1,2,4, 8,16,32,...
+    // cumulative sum is              1,3,7,15,31,63
+    // third upper bound not reached is 2,4, 8,16,32,...
+    // long long series = 0;
+    // while (third >= 2^series) {
     //   series++;
     // }
-    long long series = binarySearch(1,n,third);
+    long long series = binarySearch(0,63,third); // starting 0
+    long long seriesStart = (long long)pow(2,series)-1;
+    long long positionInSeries = third - seriesStart; // starting 0
+    unsigned int numberOfBits = (unsigned int)pow(2,series);
 
-    long long seriesStart = ((series-1)*series)/2;
+    string answer(numberOfBits, '0');
 
-    long long positionInSeries = third - seriesStart;
 
-    long long numberOfBits = (long long)pow(2,series);
-
-    string answer;
-    
-
-    for (int i=0;i<=positionInSeries;i++) {
-      switch (position) {
-        case 0:
-        answer += "01";
-        break;
-        case 1:
-        answer += "10";
-        break;
-        case 2:
-        answer += "11";
-        break;
-      }
-    }
-
-    int currentAnswerSize = (int)answer.size();
-
-    for (int i=0;i<numberOfBits-currentAnswerSize;i++) {
-      answer+='0';
-    }
 
     long long realAnswer = 0;
-
     int power = 0;
     for(int i=(int)answer.size()-1;i>=0;i--) {
       realAnswer += (answer[(size_t)i]-'0')*(long long)pow(2,power);
       power++;
     }
-
     cout<<realAnswer<<endl;
   }
 
