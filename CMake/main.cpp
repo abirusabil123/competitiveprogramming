@@ -218,7 +218,7 @@ string solve(long long index) {
 
   string remaining;
   if(positionInSeries != 0) {
-    remaining = solve(positionInSeries);
+    remaining = solve(positionInSeries-1);
   }
 
   int remainingDigits = numberOfBits - (int)output.size() - (int)remaining.size();
