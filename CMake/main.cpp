@@ -175,7 +175,7 @@ long long binarySearch(long long low, long long high, long long third) {
   }
   long long mid = low+(high-low)/2;
 
-  long long calculate = (mid*(mid+1))/2;
+  long long calculate = (long long)pow(2,mid);
 
   if(third>=calculate) {
     return binarySearch(mid+1,high,third);
@@ -202,23 +202,19 @@ int main(int argc, char *argv[]) {
     long long position = index%3;
     long long third = index/3;
 
-    // 1,2,3,4,5,6 -> cumulative sum is 1,3,6,10, ... n(n+1)/2
-    // third upper bound not reached is 1,3,6, 
+    // series length is 1,2,4,6,8,10 -> cumulative sum is 1,3,7,15, ... (2^n)-1
+    // third upper bound not reached is 2,4,8,16, ... 2^n 
     // long long series = 1;
-    // while (third>=(series*(series+1))/2) {
+    // while (third>=(2^series)) {
     //   series++;
     // }
     long long series = binarySearch(1,n,third);
-
-    long long seriesStart = ((series-1)*series)/2;
-
+    long long seriesStart = (long long)pow(2,series-1)-1; // 0,1,3,7
     long long positionInSeries = third - seriesStart;
-
-    long long numberOfBits = (long long)pow(2,series);
-
+    long long numberOfBits = (long long)pow(2,series-1);
     string answer;
     
-
+    // Fix from here
     for (int i=0;i<=positionInSeries;i++) {
       switch (position) {
         case 0:
