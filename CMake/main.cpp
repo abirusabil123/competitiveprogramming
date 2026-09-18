@@ -186,10 +186,7 @@ long long binarySearch(long long low, long long high, long long third) {
   }
 }
 
-string solve(long long n) {
-
-  long long index = n-1;
-
+string solve(long long index) {
   long long position = index%3;
   long long third = index/3;
 
@@ -246,7 +243,7 @@ int main(int argc, char *argv[]) {
     long long n;
     cin>>n;
 
-    string answer = solve(n);
+    string answer = solve(n-1);
 
     long long realAnswer = 0;
 
