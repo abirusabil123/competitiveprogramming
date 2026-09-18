@@ -169,14 +169,16 @@ NOTES:
 ///////////////////////////////////////////////////////////////
 
 
+// All 0 indexed
+
 long long binarySearch(long long low, long long high, long long third) {
   if (low==high) {
     return low;
   }
   long long mid = low+(high-low)/2;
-  
+
   long long calculate = (long long)pow(2,mid);
-  
+
   if(third>=calculate) {
     return binarySearch(mid+1,high,third);
   } else {
@@ -185,24 +187,24 @@ long long binarySearch(long long low, long long high, long long third) {
 }
 
 string solve(long long n) {
-  
+
   long long index = n-1;
-  
+
   long long position = index%3;
   long long third = index/3;
-  
+
   // series length is 1,2,4,6,8,10 -> cumulative sum is 1,3,7,15, ... (2^n)-1
-  // third upper bound not reached is 2,4,8,16, ... 2^n 
+  // third upper bound not reached is 1,2,4,8,16, ... 2^n 
   // long long series = 1;
   // while (third>=(2^series)) {
   //   series++;
   // }
-  long long series = binarySearch(1,n,third);
-  long long seriesStart = (long long)pow(2,series-1)-1; // 0,1,3,7
+  long long series = binarySearch(0,index,third);
+  long long seriesStart = (long long)pow(2,series)-1; // 0,1,3,7
   long long positionInSeries = third - seriesStart;
-  int numberOfBits = (int)pow(2,series-1);
-  
-  
+  int numberOfBits = 2*(int)pow(2,series);
+
+
   // Fix from here
   string output;
   switch (position) {
@@ -216,18 +218,18 @@ string solve(long long n) {
     output = "11";
     break;
   }
-  
+
   string remaining;
   if(positionInSeries != 0) {
     remaining = solve(positionInSeries);
   }
-  
+
   int remainingDigits = numberOfBits - (int)output.size() - (int)remaining.size();
   for (int i=0;i<remainingDigits;i++) {
     output+='0';
   }
   output+=remaining;
-  
+
   return output;
 }
 
@@ -243,20 +245,20 @@ int main(int argc, char *argv[]) {
   for (int test_case = 1; test_case <= T; test_case++) {
     long long n;
     cin>>n;
-    
+
     string answer = solve(n);
-    
+
     long long realAnswer = 0;
-    
+
     int power = 0;
     for(int i=(int)answer.size()-1;i>=0;i--) {
       realAnswer += (answer[(size_t)i]-'0')*(long long)pow(2,power);
       power++;
     }
-    
+
     cout<<realAnswer<<endl;
   }
-  
+
   
   return 0;
 }
