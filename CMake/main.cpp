@@ -177,7 +177,7 @@ long long binarySearch(long long low, long long high, long long third) {
   }
   long long mid = low+(high-low)/2;
 
-  long long calculate = (long long)pow(2,mid);
+  long long calculate = (long long)pow(2,mid+1)-1;
 
   if(third>=calculate) {
     return binarySearch(mid+1,high,third);
@@ -194,7 +194,7 @@ string solve(long long n) {
   long long third = index/3;
 
   // series length is 1,2,4,6,8,10 -> cumulative sum is 1,3,7,15, ... (2^n)-1
-  // third upper bound not reached is 1,2,4,8,16, ... 2^n 
+  // third upper bound not reached is 1,3,7,15,31, ... 2^(n+1)-1
   // long long series = 1;
   // while (third>=(2^series)) {
   //   series++;
