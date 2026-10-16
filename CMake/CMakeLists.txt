@@ -1,0 +1,54 @@
+cmake_minimum_required(VERSION 3.10)
+project(cp VERSION 2.0.0)
+
+# Set C++ standard globally
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_BUILD_TYPE Debug)
+
+
+# --- START: Strict warnings for local development ---
+if(MSVC)
+  add_compile_options(/W4 /WX /permissive-)
+else()
+  add_compile_options(
+    -Wall
+    -Wextra
+    -Wpedantic
+    -Werror
+    -Wshadow
+    -Wformat=2
+    -Wcast-align
+    -Wconversion
+    -Wsign-conversion
+    -Wnull-dereference
+    -Wdouble-promotion
+  )
+endif()
+#  If you want warnings but don’t want them to stop the build, remove -Werror.
+# --- END: Strict warnings for local development ---
+
+
+include(CTest)
+enable_testing()
+
+# Comment this for binary outputs
+add_definitions(-DI_AM_DEBUGGING)
+
+add_executable(cp main.cpp)
+
+add_executable(cpCtest testing/cpCtest.cpp)
+add_test(
+  NAME Test0
+  COMMAND $<TARGET_FILE:cp> OUTPUT_TO_FILE
+  )
+add_test(
+  NAME Test1
+  COMMAND $<TARGET_FILE:cpCtest>
+  )
+set_property(TEST Test1 APPEND PROPERTY DEPENDS Test0)
+
+set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+include(CPack)
