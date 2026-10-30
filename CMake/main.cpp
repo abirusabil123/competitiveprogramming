@@ -108,24 +108,24 @@ printf("%.2lf", double_value);  // 4.00
 using namespace std;
 
 void setup(int argc, char *argv[]) {
-  #ifdef I_AM_DEBUGGING
+#ifdef I_AM_DEBUGGING
   freopen("../input.txt", "r", stdin);
   string inputFlag = argc > 1 ? argv[1] : "";
   if (inputFlag == "OUTPUT_TO_FILE") {
     freopen("../output.txt", "w", stdout);
   } else {
-    #ifdef __clang__
+#ifdef __clang__
     cout << "clang++ " << __clang_major__ << "." << __clang_minor__ << ".";
     cout << __clang_patchlevel__ << endl;
-    #elif _MSC_VER
+#elif _MSC_VER
     cout << "MSVC " << _MSC_VER << endl;
-    #else
+#else
     cout << "g++ " << __GNUC__ << "." << __GNUC_MINOR__ << ".";
     cout << __GNUC_PATCHLEVEL__ << endl;
-    #endif
+#endif
     cout << "c++ version is " << __cplusplus << endl;
   }
-  #endif
+#endif
 }
 
 // For map like
@@ -168,94 +168,22 @@ NOTES:
 */
 ///////////////////////////////////////////////////////////////
 
-
-// All 0 indexed
-
-long long binarySearch(long long low, long long high, long long third) {
-  if (low==high) {
-    return low;
-  }
-  long long mid = low+(high-low)/2;
-
-  long long calculate = (long long)pow(2,mid+1)-1;
-
-  if(third>=calculate) {
-    return binarySearch(mid+1,high,third);
-  } else {
-    return binarySearch(low,mid,third);
-  }
-}
-
-string solve(long long index) {
-  long long position = index%3;
-  long long third = index/3;
-
-  // series length is 1,2,4,6,8,10 -> cumulative sum is 1,3,7,15, ... (2^n)-1
-  // third upper bound not reached is 1,3,7,15,31, ... 2^(n+1)-1
-  // long long series = 1;
-  // while (third>=(2^series)) {
-  //   series++;
-  // }
-  long long series = binarySearch(0,index,third);
-  long long seriesStart = (long long)pow(2,series)-1; // 0,1,3,7
-  long long positionInSeries = third - seriesStart;
-  int numberOfBits = 2*(int)pow(2,series);
-
-
-  // Fix from here
-  string output;
-  switch (position) {
-    case 0:
-    output = "01";
-    break;
-    case 1:
-    output = "10";
-    break;
-    case 2:
-    output = "11";
-    break;
-  }
-
-  string remaining;
-  if(positionInSeries != 0) {
-    remaining = solve(positionInSeries-1+position);
-  }
-
-  int remainingDigits = numberOfBits - (int)output.size() - (int)remaining.size();
-  for (int i=0;i<remainingDigits;i++) {
-    output+='0';
-  }
-  output+=remaining;
-
-  return output;
-}
-
 int main(int argc, char *argv[]) {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
   setup(argc, argv);
   ////////////////////////////////////////
-  
+
   int T;
   cin >> T;
   for (int test_case = 1; test_case <= T; test_case++) {
-    long long n;
-    cin>>n;
-
-    string answer = solve(n-1);
-
-    long long realAnswer = 0;
-
-    int power = 0;
-    for(int i=(int)answer.size()-1;i>=0;i--) {
-      realAnswer += (answer[(size_t)i]-'0')*(long long)pow(2,power);
-      power++;
-    }
-
-    cout<<realAnswer<<endl;
+    int n;
+    cin >> n;
+    cout << n << endl;
   }
 
-  
+  cout << "OK" << endl;
+
   return 0;
 }
