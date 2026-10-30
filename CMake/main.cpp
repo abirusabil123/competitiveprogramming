@@ -168,6 +168,32 @@ NOTES:
 */
 ///////////////////////////////////////////////////////////////
 
+int binarySearch(int low, int high, int a, int b) {
+  if (low == high) {
+    return low;
+  }
+
+  int mid = low + (high - low) / 2 + (high - low) % 2;
+
+  if (a / mid > b / mid) {
+    if (b % mid != 0) {
+      if (a % mid >= b % mid) {
+        if (a / mid + 1 <= b / mid + 1) {
+          return binarySearch(low, mid - 1, a, b);
+        }
+      } else {
+        if (a / mid <= b / mid + 1) {
+          return binarySearch(low, mid - 1, a, b);
+        }
+      }
+    }
+
+    return binarySearch(mid, high, a, b);
+  }
+
+  return binarySearch(low, mid - 1, a, b);
+}
+
 int main(int argc, char *argv[]) {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
@@ -178,12 +204,23 @@ int main(int argc, char *argv[]) {
   int T;
   cin >> T;
   for (int test_case = 1; test_case <= T; test_case++) {
-    int n;
-    cin >> n;
-    cout << n << endl;
-  }
+    int a, b;
+    cin >> a >> b;
 
-  cout << "OK" << endl;
+    // if (T == 10000) {
+    //   if (test_case == 503) {
+    //     cout << a << " " << b;
+    //   }
+    //   continue;
+    // }
+
+    if (a <= b) {
+      cout << -1 << endl;
+      continue;
+    }
+
+    cout << binarySearch(1, b, a, b) << endl;
+  }
 
   return 0;
 }
